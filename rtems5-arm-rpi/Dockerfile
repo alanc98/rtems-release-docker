@@ -1,4 +1,4 @@
-FROM rtems5-arm-tools:latest
+FROM rtems5-arm-tools:5.1-rc1
 LABEL Description="RTEMS 5.1 rc1 release ARM Raspberry Pi build"
 ENV DEBIAN_FRONTEND noninteractive
 ENV TERM linux

@@ -1,4 +1,4 @@
-FROM rtems5-sparc-tools:latest
+FROM rtems5-sparc-tools:5.1-rc1
 LABEL Description="RTEMS 5.1 rc1 release SPARC LEON3 build"
 ENV DEBIAN_FRONTEND noninteractive
 ENV TERM linux

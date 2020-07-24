@@ -1,5 +1,5 @@
 FROM ubuntu:latest
-LABEL Description="RTEMS 5 m2004 base packages - this layer will be shared by all other images"
+LABEL Description="RTEMS 5 base packages - this layer will be shared by all other images"
 ENV DEBIAN_FRONTEND noninteractive
 ENV TERM linux
 

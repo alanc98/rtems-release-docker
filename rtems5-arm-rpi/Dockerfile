@@ -1,5 +1,5 @@
-FROM rtems5-m2004-sparc-tools:latest
-LABEL Description="RTEMS 5 m2004 release SPARC LEON3 build"
+FROM rtems5-arm-tools:latest
+LABEL Description="RTEMS 5.1 rc1 release ARM Raspberry Pi build"
 ENV DEBIAN_FRONTEND noninteractive
 ENV TERM linux
 
@@ -12,19 +12,19 @@ RUN  cd /usr/src && \
      #
      # download RTEMS
      #
-     wget https://ftp.rtems.org/pub/rtems/releases/5/5.0.0/5.0.0-m2004/sources/rtems-5.0.0-m2004.tar.xz && \
-     tar Jxf rtems-5.0.0-m2004.tar.xz && \
+     wget https://ftp.rtems.org/pub/rtems/releases/5/rc/5.1.0-rc1/sources/rtems-5.1.0-rc1.tar.xz && \
+     tar Jxf rtems-5.1.0-rc1.tar.xz && \
      #
      # Build RTEMS
      #
-     cd rtems-5.0.0-m2004 && \
+     cd rtems-5.1.0-rc1 && \
      ./bootstrap && \
      cd .. && \
-     mkdir b-sparc && \
-     cd b-sparc && \
-       ../rtems-5.0.0-m2004/configure --target=sparc-rtems5 \
-       --enable-rtemsbsp=leon3 \
-       --prefix=/opt/rtems/5.0.0-m2004 \
+     mkdir b-arm && \
+     cd b-arm && \
+       ../rtems-5.1.0-rc1/configure --target=arm-rtems5 \
+       --enable-rtemsbsp="raspberrypi raspberrypi2" \
+       --prefix=/opt/rtems/5.1.0-rc1 \
        --enable-networking \
        --enable-posix  && \
      make -j8 && \
@@ -33,4 +33,4 @@ RUN  cd /usr/src && \
      # Clean up
      #
      cd .. && \
-     rm -rf b-sparc
+     rm -rf b-arm

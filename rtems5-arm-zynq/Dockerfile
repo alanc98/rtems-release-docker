@@ -1,5 +1,5 @@
-FROM rtems5-m2004-arm-tools:latest
-LABEL Description="RTEMS 5 m2004 release ARM Xilinx Zynq A9 QEMU + libbsd build"
+FROM rtems5-arm-tools:latest
+LABEL Description="RTEMS 5.1 rc1 release ARM Xilinx Zynq A9 QEMU + libbsd build"
 ENV DEBIAN_FRONTEND noninteractive
 ENV TERM linux
 
@@ -12,19 +12,19 @@ RUN  cd /usr/src && \
      #
      # download RTEMS
      #
-     wget https://ftp.rtems.org/pub/rtems/releases/5/5.0.0/5.0.0-m2004/sources/rtems-5.0.0-m2004.tar.xz && \
-     tar Jxf rtems-5.0.0-m2004.tar.xz && \
+     wget https://ftp.rtems.org/pub/rtems/releases/5/rc/5.1.0-rc1/sources/rtems-5.1.0-rc1.tar.xz && \
+     tar Jxf rtems-5.1.0-rc1.tar.xz && \
      #
      # Build RTEMS
      #
-     cd rtems-5.0.0-m2004 && \
+     cd rtems-5.1.0-rc1 && \
      ./bootstrap && \
      cd .. && \
      mkdir b-arm && \
      cd b-arm && \
-       ../rtems-5.0.0-m2004/configure --target=arm-rtems5 \
+       ../rtems-5.1.0-rc1/configure --target=arm-rtems5 \
        --enable-rtemsbsp=xilinx_zynq_a9_qemu \
-       --prefix=/opt/rtems/5.0.0-m2004 \
+       --prefix=/opt/rtems/5.1.0-rc1 \
        --disable-networking \
        --enable-posix  && \
      make -j8 && \
@@ -38,11 +38,11 @@ RUN  cd /usr/src && \
      # Get rtems-libbsd 
      #
      cd /usr/src && \
-     wget https://ftp.rtems.org/pub/rtems/releases/5/5.0.0/5.0.0-m2004/sources/rtems-libbsd-5.0.0-m2004.tar.xz && \
-     tar Jxf rtems-libbsd-5.0.0-m2004.tar.xz && \
-     cd rtems-libbsd-5.0.0-m2004 && \
-     ./waf configure --prefix="/opt/rtems/5.0.0-m2004" \
-       --rtems-tools="/opt/rtems/5.0.0-m2004" \
+     wget https://ftp.rtems.org/pub/rtems/releases/5/rc/5.1.0-rc1/sources/rtems-libbsd-5.1.0-rc1.tar.xz && \
+     tar Jxf rtems-libbsd-5.1.0-rc1.tar.xz && \
+     cd rtems-libbsd-5.1.0-rc1 && \
+     ./waf configure --prefix="/opt/rtems/5.1.0-rc1" \
+       --rtems-tools="/opt/rtems/5.1.0-rc1" \
        --rtems-bsps=arm/xilinx_zynq_a9_qemu \
        --buildset=buildset/default.ini && \
      ./waf && \
@@ -51,4 +51,4 @@ RUN  cd /usr/src && \
      # Clean up
      #
      cd .. && \
-     rm -rf rtems-libbsd-5.0.0-m2004
+     rm -rf rtems-libbsd-5.1.0-rc1

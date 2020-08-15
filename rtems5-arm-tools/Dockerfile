@@ -20,4 +20,4 @@ RUN  cd /usr/src && \
      cd /usr/src && \
      rm -rf rtems-source-builder-5.1-rc2
 
-ENV PATH="/opt/rtems/5.1.0-rc2/bin:${PATH}"
+ENV PATH="/opt/rtems/5.1-rc2/bin:${PATH}"

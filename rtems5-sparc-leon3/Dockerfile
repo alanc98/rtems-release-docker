@@ -1,5 +1,5 @@
-FROM rtems5-sparc-tools:5.1-rc1
-LABEL Description="RTEMS 5.1 rc1 release SPARC LEON3 build"
+FROM rtems5-sparc-tools:5.1-rc2
+LABEL Description="RTEMS 5.1 rc2 release SPARC LEON3 build"
 ENV DEBIAN_FRONTEND noninteractive
 ENV TERM linux
 
@@ -12,19 +12,19 @@ RUN  cd /usr/src && \
      #
      # download RTEMS
      #
-     wget https://ftp.rtems.org/pub/rtems/releases/5/rc/5.1.0-rc1/sources/rtems-5.1.0-rc1.tar.xz && \
-     tar Jxf rtems-5.1.0-rc1.tar.xz && \
+     wget https://ftp.rtems.org/pub/rtems/releases/5/rc/5.1.0-rc2/sources/rtems-5.1.0-rc2.tar.xz && \
+     tar Jxf rtems-5.1.0-rc2.tar.xz && \
      #
      # Build RTEMS
      #
-     cd rtems-5.1.0-rc1 && \
+     cd rtems-5.1.0-rc2 && \
      ./bootstrap && \
      cd .. && \
      mkdir b-sparc && \
      cd b-sparc && \
-       ../rtems-5.1.0-rc1/configure --target=sparc-rtems5 \
+       ../rtems-5.1.0-rc2/configure --target=sparc-rtems5 \
        --enable-rtemsbsp=leon3 \
-       --prefix=/opt/rtems/5.1.0-rc1 \
+       --prefix=/opt/rtems/5.1.0-rc2 \
        --enable-networking \
        --enable-posix  && \
      make -j8 && \

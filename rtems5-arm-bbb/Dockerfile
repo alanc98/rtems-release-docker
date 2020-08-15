@@ -1,5 +1,5 @@
-FROM rtems5-arm-tools:5.1-rc1
-LABEL Description="RTEMS 5.1 rc1 release ARM Beaglebone Black + libbsd build"
+FROM rtems5-arm-tools:5.1-rc2
+LABEL Description="RTEMS 5.1 rc2 release ARM Beaglebone Black + libbsd build"
 ENV DEBIAN_FRONTEND noninteractive
 ENV TERM linux
 
@@ -12,19 +12,19 @@ RUN  cd /usr/src && \
      #
      # download RTEMS
      #
-     wget https://ftp.rtems.org/pub/rtems/releases/5/rc/5.1.0-rc1/sources/rtems-5.1.0-rc1.tar.xz && \
-     tar Jxf rtems-5.1.0-rc1.tar.xz && \
+     wget https://ftp.rtems.org/pub/rtems/releases/5/rc/5.1.0-rc2/sources/rtems-5.1.0-rc2.tar.xz && \
+     tar Jxf rtems-5.1.0-rc2.tar.xz && \
      #
      # Build RTEMS
      #
-     cd rtems-5.1.0-rc1 && \
+     cd rtems-5.1.0-rc2 && \
      ./bootstrap && \
      cd .. && \
      mkdir b-arm && \
      cd b-arm && \
-       ../rtems-5.1.0-rc1/configure --target=arm-rtems5 \
+       ../rtems-5.1.0-rc2/configure --target=arm-rtems5 \
        --enable-rtemsbsp=beagleboneblack \
-       --prefix=/opt/rtems/5.1.0-rc1 \
+       --prefix=/opt/rtems/5.1.0-rc2 \
        --disable-networking \
        --enable-posix  && \
      make -j8 && \
@@ -38,11 +38,11 @@ RUN  cd /usr/src && \
      # Get rtems-libbsd 
      #
      cd /usr/src && \
-     wget https://ftp.rtems.org/pub/rtems/releases/5/rc/5.1.0-rc1/sources/rtems-libbsd-5.1.0-rc1.tar.xz && \
-     tar Jxf rtems-libbsd-5.1.0-rc1.tar.xz && \
-     cd rtems-libbsd-5.1.0-rc1 && \
-     ./waf configure --prefix="/opt/rtems/5.1.0-rc1" \
-       --rtems-tools="/opt/rtems/5.1.0-rc1" \
+     wget https://ftp.rtems.org/pub/rtems/releases/5/rc/5.1.0-rc2/sources/rtems-libbsd-5.1.0-rc2.tar.xz && \
+     tar Jxf rtems-libbsd-5.1.0-rc2.tar.xz && \
+     cd rtems-libbsd-5.1.0-rc2 && \
+     ./waf configure --prefix="/opt/rtems/5.1.0-rc2" \
+       --rtems-tools="/opt/rtems/5.1.0-rc2" \
        --rtems-bsps=arm/beagleboneblack \
        --buildset=buildset/default.ini && \
      ./waf && \
@@ -51,4 +51,4 @@ RUN  cd /usr/src && \
      # Clean up
      #
      cd .. && \
-     rm -rf rtems-libbsd-5.1.0-rc1
+     rm -rf rtems-libbsd-5.1.0-rc2

@@ -1,5 +1,5 @@
 FROM rtems5-base:latest
-LABEL Description="RTEMS 5.1 rc1 release SPARC tools build"
+LABEL Description="RTEMS 5.1 rc2 release SPARC tools build"
 ENV DEBIAN_FRONTEND noninteractive
 ENV TERM linux
 
@@ -7,17 +7,17 @@ RUN  cd /usr/src && \
      #
      # Download and extract RTEMS Source Builder
      # 
-     wget https://ftp.rtems.org/pub/rtems/releases/5/rc/5.1.0-rc1/sources/rtems-source-builder-5.1.0-rc1.tar.xz && \
-     tar Jxf rtems-source-builder-5.1.0-rc1.tar.xz && \
+     wget https://ftp.rtems.org/pub/rtems/releases/5/rc/5.1.0-rc2/sources/rtems-source-builder-5.1.0-rc2.tar.xz && \
+     tar Jxf rtems-source-builder-5.1.0-rc2.tar.xz && \
      #
      # build the SPARC RTEMS toolchain
      #
-     cd rtems-source-builder-5.1.0-rc1/rtems && \
-     ../source-builder/sb-set-builder --prefix=/opt/rtems/5.1.0-rc1 5/rtems-sparc && \
+     cd rtems-source-builder-5.1.0-rc2/rtems && \
+     ../source-builder/sb-set-builder --prefix=/opt/rtems/5.1.0-rc2 5/rtems-sparc && \
      #
      # Clean up
      #
      cd /usr/src && \
-     rm -rf rtems-source-builder-5.1.0-rc1
+     rm -rf rtems-source-builder-5.1.0-rc2
 
-ENV PATH="/opt/rtems/5.1.0-rc1/bin:${PATH}"
+ENV PATH="/opt/rtems/5.1.0-rc2/bin:${PATH}"

@@ -12,19 +12,19 @@ RUN  cd /usr/src && \
      #
      # download RTEMS
      #
-     wget https://ftp.rtems.org/pub/rtems/releases/5/rc/5.1.0-rc2/sources/rtems-5.1.0-rc2.tar.xz && \
-     tar Jxf rtems-5.1.0-rc2.tar.xz && \
+     wget https://ftp.rtems.org/pub/rtems/releases/5/rc/5.1-rc2/sources/rtems-5.1-rc2.tar.xz && \
+     tar Jxf rtems-5.1-rc2.tar.xz && \
      #
      # Build RTEMS
      #
-     cd rtems-5.1.0-rc2 && \
+     cd rtems-5.1-rc2 && \
      ./bootstrap && \
      cd .. && \
      mkdir b-arm && \
      cd b-arm && \
-       ../rtems-5.1.0-rc2/configure --target=arm-rtems5 \
+       ../rtems-5.1-rc2/configure --target=arm-rtems5 \
        --enable-rtemsbsp="raspberrypi raspberrypi2" \
-       --prefix=/opt/rtems/5.1.0-rc2 \
+       --prefix=/opt/rtems/5.1-rc2 \
        --enable-networking \
        --enable-posix  && \
      make -j8 && \

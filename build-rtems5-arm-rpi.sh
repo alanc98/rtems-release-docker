@@ -1,1 +1,1 @@
-docker build -t rtems5-arm-rpi:5.1-rc2 rtems5-arm-rpi
+docker build -t rtems5-arm-rpi:5.1 rtems5-arm-rpi
